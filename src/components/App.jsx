@@ -37,6 +37,9 @@ class App extends React.Component {
                 <hr />
                 <div className="credits text-center">
                     <p>
+                        <a href="http://jasonwatmore.com/post/2017/03/14/react-pagination-example-with-logic-like-google" target="_top">React - Pagination Example with Logic like Google</a>
+                    </p>
+                    <p>
                         <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
                     </p>
                 </div>
