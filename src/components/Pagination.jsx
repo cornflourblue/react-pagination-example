@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const propTypes = {
     items: PropTypes.array.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    initialPage: PropTypes.number    
+    initialPage: PropTypes.number
 }
 
 const defaultProps = {
@@ -17,7 +17,17 @@ class Pagination extends React.Component {
     }
 
     componentWillMount() {
-        this.setPage(this.props.initialPage);
+        // set page if items array isn't empty
+        if (this.props.items && this.props.items.length) {
+            this.setPage(this.props.initialPage);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // reset page if items array has changed
+        if (this.props.items !== prevProps.items) {
+            this.setPage(this.props.initialPage);
+        }
     }
 
     setPage(page) {
@@ -93,6 +103,11 @@ class Pagination extends React.Component {
 
     render() {
         var pager = this.state.pager;
+
+        if (!pager.pages || pager.pages.length <= 1) {
+            // don't display pager if there is only 1 page
+            return null;
+        }
 
         return (
             <ul className="pagination">
