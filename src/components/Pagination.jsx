@@ -71,11 +71,11 @@ class Pagination extends React.Component {
             startPage = 1;
             endPage = 10;
         } else if (currentPage + 4 >= totalPages) {
-             startPage = totalPages - 9;
-             endPage = totalPages;
+            startPage = totalPages - 9;
+            endPage = totalPages;
         } else {
-             startPage = currentPage - 5;
-             endPage = currentPage + 4;
+            startPage = currentPage - 5;
+            endPage = currentPage + 4;
         }
 
         // calculate start and end item indexes
