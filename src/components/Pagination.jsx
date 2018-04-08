@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const propTypes = {
     items: PropTypes.array.isRequired,
@@ -85,7 +86,7 @@ class Pagination extends React.Component {
         var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
         // create an array of pages to ng-repeat in the pager control
-        var pages = _.range(startPage, endPage + 1);
+        var pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
 
         // return object with all pager properties required by the view
         return {
