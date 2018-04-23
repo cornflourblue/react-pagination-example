@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 const propTypes = {
     items: PropTypes.array.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    initialPage: PropTypes.number
+    initialPage: PropTypes.number,
+    pageSize: PropTypes.number
 }
 
 const defaultProps = {
-    initialPage: 1
+    initialPage: 1,
+    pageSize: 10
 }
 
 class Pagination extends React.Component {
@@ -32,7 +34,7 @@ class Pagination extends React.Component {
     }
 
     setPage(page) {
-        var items = this.props.items;
+        var { items, pageSize } = this.props;
         var pager = this.state.pager;
 
         if (page < 1 || page > pager.totalPages) {
@@ -40,7 +42,7 @@ class Pagination extends React.Component {
         }
 
         // get new pager object for specified page
-        pager = this.getPager(items.length, page);
+        pager = this.getPager(items.length, page, pageSize);
 
         // get new page of items from items array
         var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
