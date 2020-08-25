@@ -6,7 +6,7 @@ class App extends React.Component {
     super();
 
     // an example array of items to be paged
-    var exampleItems = [...Array(150).keys()].map((i) => ({
+    var exampleItems = [...Array(20).keys()].map((i) => ({
       id: i + 1,
       name: "Item " + (i + 1),
     }));
@@ -23,12 +23,28 @@ class App extends React.Component {
     this.setState({ pageOfItems: pageOfItems });
   };
 
+  removeItems = () => {
+    this.setState((i) => ({
+      exampleItems: i.exampleItems.splice(0, i.exampleItems.length - 3),
+    }));
+  };
+
+  addItems = () => {
+    this.setState((i) => ({
+      exampleItems: [...Array(20).keys()].map((i) => ({
+        id: i + 1,
+        name: "Added Item " + (i + 1),
+      })),
+    }));
+  };
+
   render() {
     return (
       <div>
         <div className="container">
           <div className="text-center">
             <h1>React - Pagination Example with logic like Google</h1>
+            <button onClick={this.addItems}>Add 20 items</button>{" "}
             <select
               value={this.state.pageSize}
               name="pageSize"
@@ -37,7 +53,8 @@ class App extends React.Component {
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={15}>15</option>
-            </select>
+            </select>{" "}
+            <button onClick={this.removeItems}>Remove items from array</button>
             {this.state.pageOfItems.map((item) => (
               <div key={item.id}>{item.name}</div>
             ))}
@@ -65,18 +82,9 @@ class App extends React.Component {
               React - Pagination Example with Logic like Google
             </a>
           </p>
-          <hr />
-          <p className="lead">
+          <p>
             Updated and fixed by <a href="https://hyan.dev">HyAn.dev</a>
           </p>
-          <ul>
-            <li>Upgraded React to v16.13</li>
-            <li>Pagination.jsx now uses Hooks</li>
-            <li>
-              Fixed a bug where if items where dynamically removed from an
-              array, the results wouldn't update.
-            </li>
-          </ul>
         </div>
       </div>
     );
