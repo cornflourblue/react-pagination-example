@@ -1,0 +1,29 @@
+$white: #FFF;
+$primary: #00abd6;
+
+.container {
+    border-top: 1px solid darken($white, 15);
+    padding-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    button {
+        border: 1px solid darken($white, 15);
+        padding: 5px 15px;
+        border-radius: 15px;
+        cursor: pointer;
+
+        &:disabled {
+            cursor: auto;
+        }
+    }
+    
+    .active {
+        background-color: $primary;
+        border: 1px solid darken($primary, 5);
+        color: $white;
+    }
+}
